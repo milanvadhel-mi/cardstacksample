@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/selectableItemBackground"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="@dimen/dp_30"
+    app:cardElevation="@dimen/dp_15"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/dp_30"
+        android:paddingVertical="@dimen/dp_50">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpUserImages"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.zhpan.indicator.IndicatorView
+            android:id="@+id/ivDots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/flUserInfo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:vpi_slider_checked_color="@color/purple_500"
+            app:vpi_slider_normal_color="@color/white" />
+
+        <FrameLayout
+            android:id="@+id/flUserInfo"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_80"
+            android:background="@drawable/bg_lightblack"
+            app:layout_constraintBottom_toBottomOf="@id/vpUserImages"
+            app:layout_constraintEnd_toEndOf="@id/vpUserImages"
+            app:layout_constraintStart_toStartOf="@id/vpUserImages" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNameAndAge"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintEnd_toEndOf="@id/flUserInfo"
+            app:layout_constraintStart_toStartOf="@id/flUserInfo"
+            app:layout_constraintTop_toTopOf="@id/flUserInfo"
+            tools:text="Milan Vadhel, 22" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCountry"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintEnd_toEndOf="@id/tvNameAndAge"
+            app:layout_constraintStart_toStartOf="@id/tvNameAndAge"
+            app:layout_constraintTop_toBottomOf="@id/tvNameAndAge"
+            tools:text="Ahmedabad, Gujarat" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
