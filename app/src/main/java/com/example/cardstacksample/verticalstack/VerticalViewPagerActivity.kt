@@ -1,14 +1,10 @@
 package com.example.cardstacksample.verticalstack
 
-import android.R.attr.left
-import android.R.attr.right
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.cardstacksample.Card
-import com.example.cardstacksample.ProfileImage
+import com.example.cardstacksample.model.Card
+import com.example.cardstacksample.model.ProfileImage
 import com.example.cardstacksample.adapter.CardStackAdapter
 import com.example.cardstacksample.databinding.ActivityVerticalViewPagerBinding
 import com.example.cardstacksample.util.DisplayUtils

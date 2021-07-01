@@ -12,15 +12,18 @@ class SliderTransformerHorizontal(private val offscreenPageLimit: Int) :
 
     companion object {
 
+        private const val DEFAULT_ELEVATION = 2f
 
-        // Scale Height
+        private const val DEFAULT_TRANSLATION_X = .0f
         private const val DEFAULT_TRANSLATION_Y = .0f
 
-        // To Show the card behind first card
-        private const val DEFAULT_TRANSLATION_FACTOR = 1.10f
+        // As Per Increase , Card will go up side on Y Axis
+        // As per Decrease , Card will go down side on Y Axis
+        private const val DEFAULT_TRANSLATION_FACTOR_Y = 6.2f
 
-        // Manage the Height of Hidden cards behind first card
-        private const val SCALE_FACTOR = .15f // Large device
+        private const val DEFAULT_TRANSLATION_FACTOR_X = 1f
+
+        private const val SCALE_FACTOR = .14f
         private const val DEFAULT_SCALE = 1f
 
         private const val ALPHA_FACTOR = .0f
@@ -30,7 +33,7 @@ class SliderTransformerHorizontal(private val offscreenPageLimit: Int) :
     }
 
     override fun transformPage(page: View, position: Float) {
-
+        //Log.d(TAG, "Current Page Position : $position")
         page.apply {
 
             ViewCompat.setElevation(page, -abs(position))
@@ -40,23 +43,36 @@ class SliderTransformerHorizontal(private val offscreenPageLimit: Int) :
 
             when {
                 position <= 0f -> {
+                    translationX = DEFAULT_TRANSLATION_X
                     translationY = DEFAULT_TRANSLATION_Y
                     scaleX = DEFAULT_SCALE
                     scaleY = DEFAULT_SCALE
                     alpha = DEFAULT_ALPHA + position
+                    Log.d(TAG, "Position => $position  TranslationX -> $translationX  TranslationY -> $translationY ScaleX -> $scaleX  ScaleY -> $scaleY")
                 }
                 position <= offscreenPageLimit - 1 -> {
                     scaleX = scaleFactor
                     scaleY = scaleFactor
-                    translationY = -(height / DEFAULT_TRANSLATION_FACTOR) * position
-                    Log.d(TAG, "Width : $width  TranslationY : $translationY  Position : $position")
+
+                    // To Move Page From it's position to up side(plus side) on Y-Axis
+                    translationY = (width / DEFAULT_TRANSLATION_FACTOR_Y) * position
+
+                    // To Move Page From it's position to left side(minus side) on X-Axis
+                    translationX = -(width / DEFAULT_TRANSLATION_FACTOR_X) * position
                     alpha = alphaFactor
+
+                    //Log.d(TAG, "Position => $position  TranslationX -> $translationX  TranslationY -> $translationY ScaleX -> $scaleX  ScaleY -> $scaleY")
+
                 }
                 else -> {
+                    ViewCompat.setElevation(page, DEFAULT_ELEVATION/4)
+                    translationX = DEFAULT_TRANSLATION_X
                     translationY = DEFAULT_TRANSLATION_Y
                     scaleX = DEFAULT_SCALE
                     scaleY = DEFAULT_SCALE
                     alpha = DEFAULT_ALPHA
+
+                    Log.d(TAG, "Position => $position  TranslationX -> $translationX  TranslationY -> $translationY ScaleX -> $scaleX  ScaleY -> $scaleY")
                 }
             }
         }

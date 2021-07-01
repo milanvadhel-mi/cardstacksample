@@ -3,9 +3,9 @@ package com.example.cardstacksample.horizontalstack
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cardstacksample.Card
+import com.example.cardstacksample.model.Card
+import com.example.cardstacksample.model.ProfileImage
 import com.example.cardstacksample.adapter.CardStackAdapter
-import com.example.cardstacksample.ProfileImage
 import com.example.cardstacksample.databinding.ActivityHorizontalViewPagerBinding
 import com.example.cardstacksample.util.DisplayUtils
 import com.mindinventory.cardstackview.SliderTransformerHorizontal
@@ -16,6 +16,7 @@ class HorizontalViewPagerActivity : AppCompatActivity() {
         private val TAG = "ViewPagerActivity"
     }
 
+    private var centerItemPosition = Int.MAX_VALUE / 2
     private var _binding: ActivityHorizontalViewPagerBinding? = null
     val binding get() = _binding!!
 
@@ -26,18 +27,29 @@ class HorizontalViewPagerActivity : AppCompatActivity() {
         _binding = ActivityHorizontalViewPagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpCardStack()
-        setMargins()
     }
 
     private fun setUpCardStack() {
         binding.vpCardStack.adapter = cardStackAdapter
         cardStackAdapter.setItems(getCardList())
-        binding.vpCardStack.offscreenPageLimit = 3
-        binding.vpCardStack.setPageTransformer(SliderTransformerHorizontal(3))
+        val numberOfCards = getCardList().size
+        if (numberOfCards >= 3) {
+            binding.vpCardStack.offscreenPageLimit = 3
+            binding.vpCardStack.setPageTransformer(SliderTransformerHorizontal(3))
+        } else {
+            binding.vpCardStack.offscreenPageLimit = numberOfCards
+            binding.vpCardStack.setPageTransformer(SliderTransformerHorizontal(numberOfCards))
+        }
+        if (getCardList().size % 2 == 0) {
+            centerItemPosition += 1
+        } else {
+            centerItemPosition += 2
+        }
+        binding.vpCardStack.setCurrentItem(centerItemPosition, false)
     }
 
     private fun setMargins() {
-        if(binding.vpCardStack.layoutParams is ViewGroup.MarginLayoutParams){
+        if (binding.vpCardStack.layoutParams is ViewGroup.MarginLayoutParams) {
             val params = binding.vpCardStack.layoutParams as ViewGroup.MarginLayoutParams
             val marginVertical = DisplayUtils.getDisplayHeight(this) / 18
             //val marginVertical = DisplayUtils.getDisplayHeight(this) / 75

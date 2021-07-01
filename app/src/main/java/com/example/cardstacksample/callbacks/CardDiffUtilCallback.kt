@@ -1,7 +1,7 @@
 package com.example.cardstacksample.callbacks
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.cardstacksample.Card
+import com.example.cardstacksample.model.Card
 
 class CardDiffCallback(
     private val old: List<Card>,

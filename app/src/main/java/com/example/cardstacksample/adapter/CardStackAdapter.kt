@@ -1,15 +1,21 @@
 package com.example.cardstacksample.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cardstacksample.Card
+import androidx.viewpager2.widget.ViewPager2
 import com.example.cardstacksample.R
 import com.example.cardstacksample.databinding.ItemCardBinding
+import com.example.cardstacksample.model.Card
 import com.mindinventory.CircularAdapter
 
 
 class CardStackAdapter : CircularAdapter<Card>() {
+
+    companion object {
+        private val TAG = "CardStackAdapter"
+    }
 
     private val imagesAdapter by lazy { ImagesAdapter() }
 
@@ -27,13 +33,14 @@ class CardStackAdapter : CircularAdapter<Card>() {
         holder: RecyclerView.ViewHolder,
         card: Card,
         actualPosition: Int,
-        position: Int
+        position: Int,
     ) {
         (holder as CardStackViewHolder).bind(card)
     }
 
     inner class CardStackViewHolder(val itemCardBinding: ItemCardBinding) :
         RecyclerView.ViewHolder(itemCardBinding.root) {
+        @SuppressLint("ClickableViewAccessibility")
         fun bind(card: Card) {
             with(itemCardBinding) {
                 vpUserImages.adapter = imagesAdapter

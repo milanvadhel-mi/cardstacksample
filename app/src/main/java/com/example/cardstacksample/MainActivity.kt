@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.example.cardstacksample.adapter.CardStackAdapter
 import com.example.cardstacksample.databinding.ActivityMainBinding
+import com.example.cardstacksample.model.Card
+import com.example.cardstacksample.model.ProfileImage
 import com.mindinventory.cardstackview.*
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListener {

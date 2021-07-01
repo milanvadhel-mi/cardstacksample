@@ -11,13 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CardStackSample">
-        <activity android:name=".verticalstack.VerticalViewPagerActivity">
+        <activity android:name=".verticalstack.VerticalViewPagerActivity"
+            android:windowSoftInputMode="adjustResize">
 
         </activity>
         <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".horizontalstack.HorizontalViewPagerActivity">
+        <activity android:name=".horizontalstack.HorizontalViewPagerActivity"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
